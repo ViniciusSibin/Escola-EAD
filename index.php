@@ -2,8 +2,11 @@
 
     require_once('assets/conexao.php');
     $pagina = "paginaInicial";
+    $curso = false;
 
     if(isset($_GET['pagina'])) $pagina = $_GET['pagina'];
+
+    if(isset($_GET['curso'])) $curso = $_GET['curso'];
 
     if(!isset($_SESSION)){
         session_start();
@@ -17,7 +20,8 @@
     $sql_usuario = "SELECT * FROM usuario WHERE id = '$id_Usuario'"; 
     $sql_usuario_query = $mysqli->query($sql_usuario) or die($mysqli->error);
     $usuario = $sql_usuario_query->fetch_assoc();
-    
+
+    var_dump($_POST);
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -187,7 +191,7 @@
 
                             <div class="main-body">
                                 <div class="page-wrapper">
-                                    <?php require("paginas/$pagina.php"); ?>
+                                    <?php if($curso) require("$curso"); else require("paginas/$pagina.php"); ?>
                                 </div>
                             </div>
                             <div id="styleSelector">

@@ -32,15 +32,27 @@
         <div class="col-sm-3">
             <div class="card">
                 <div class="card-block">
-                    <img src="assets/images/bg.jpg" alt="" class="img-fluid">
+                    <img src="assets/images/bg.jpg" alt="" class="img-fluid mb-3">
+                    <h1>Nome do curso</h1>
+                    <div class="row align-items-end">
+                    <p class="col-lg-8">Nome do professor</p>
+                    <P class="col-lg-4">Carga: 32H</P>
+                    </div>
+                   
                     <p>
                         "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
                         eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
                         enim ad minim veniam, quis nostrud ...
                     </p>
-                    <button type="button" class="btn btn-primary btn-md btn-block waves-effect text-center m-b-20">Valor R$29,90</button>
+                    <form method="POST" action="">
+                        <button type="submit" name="detalhe" value="1" class="btn btn-primary btn-md btn-block waves-effect text-center m-b-20">Saiba Mais</button>
+                    </form>
+                    
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+
+
