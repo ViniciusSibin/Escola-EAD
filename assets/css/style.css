@@ -6020,8 +6020,8 @@ body[themebg-pattern="pattern9"] {
   .pcoded .pcoded-navbar[navbar-theme="themelight1"] .pcoded-item > li.pcoded-hasmenu.pcoded-trigger > a:after {
     color: #000; }
   .pcoded .pcoded-navbar[navbar-theme="themelight1"] .pcoded-item > li.active:hover > a, .pcoded .pcoded-navbar[navbar-theme="themelight1"] .pcoded-item > li:hover > a {
-    background: #fff;
-    color: #000; }
+    background: #d3cece;
+    color: #d3cece; }
   .pcoded .pcoded-navbar[navbar-theme="themelight1"] .pcoded-item .pcoded-hasmenu .pcoded-submenu li:hover > a {
     background-color: #fff;
     color: #000; }
