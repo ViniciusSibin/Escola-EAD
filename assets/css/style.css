@@ -4290,7 +4290,7 @@ table tbody .border-bottom-info td {
       padding: 0 15px;
       text-decoration: none;
       position: relative;
-      transition: all 0.3s ease-in-out; }
+      transition: all 0.2s ease-in-out; }
       .pcoded .pcoded-navbar .pcoded-item > li > a.disabled {
         opacity: 0.5;
         cursor: not-allowed !important; }
