@@ -1,4 +1,6 @@
 <?php
+
+    require_once('assets/conexao.php');
     $pagina = "paginaInicial";
 
     if(isset($_GET['pagina'])) $pagina = $_GET['pagina'];
@@ -11,6 +13,10 @@
         header("Location: login.php");
         die();
     }
+    $id_Usuario = $_SESSION['usuario'];
+    $sql_usuario = "SELECT * FROM usuario WHERE id = '$id_Usuario'"; 
+    $sql_usuario_query = $mysqli->query($sql_usuario) or die($mysqli->error);
+    $usuario = $sql_usuario_query->fetch_assoc();
     
 ?>
 <!DOCTYPE html>
@@ -103,15 +109,15 @@
                         <ul class="nav-right">
                             <li class="header-notification">
                                 <a href="#!">
-                                    <i class="ti-money"></i>
+                                    R$
                                     <span class="badge bg-c-pink"></span>
-                                    50,00
+                                    <?php echo $usuario['credito'] ?>
                                 </a>
                             </li>
                             <li class="user-profile header-notification">
                                 <a href="#!">
-                                    <img src="assets/images/avatar-4.jpg" class="img-radius" alt="User-Profile-Image">
-                                    <span>John Doe</span>
+                                    <img src="<?php echo $usuario['fotoPerfil'] ?>" class="img-radius" alt="User-Profile-Image">
+                                    <span><?php echo $usuario['nome'] ?></span>
                                     <i class="ti-angle-down"></i>
                                 </a>
                                 <ul class="show-notification profile-notification">
