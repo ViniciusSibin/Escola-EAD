@@ -80,14 +80,12 @@ p {
       margin-bottom: 0;
       font-weight: 600;
       color: #303548;
-      font-size: 20px;
-      text-transform: capitalize; }
+      font-size: 20px; }
     .main-body .page-wrapper .page-header-title span {
       font-size: 13px;
       color: #919aa3;
       display: inline-block;
-      margin-top: 10px;
-      text-transform: capitalize; }
+      margin-top: 10px;}
     .main-body .page-wrapper .page-header-title i {
       display: inline-flex;
       float: left;
@@ -6588,7 +6586,7 @@ body .pcoded[vertical-nav-type="compact"] .main-menu {
   body .pcoded[vertical-nav-type="compact"] .main-menu .pcoded-badge {
     display: none; }
 body.menu-bottom .navbar-wrapper {
-  .z-index: 1050; }
+  z-index: 1050; }
 body.menu-bottom .pcoded .pcoded-main-container {
   margin-top: 0 !important; }
 body.menu-bottom .p-chat-user,
