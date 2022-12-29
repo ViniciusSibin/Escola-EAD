@@ -1,3 +1,35 @@
+<?php
+    var_dump($_POST);
+    require('assets/conexao.php');
+
+    if(count($_POST) > 0){
+        $erro = false;
+
+        $email = $mysqli->escape_string($_POST['email']);
+        $senha = $_POST['senha'];
+
+        $sql = "SELECT * FROM usuario WHERE email = '$email'";
+        $sql_query = $mysqli->query($sql) or die($mysqli->error);
+
+        if($sql_query->num_rows > 0){
+            $usuario = $sql_query->fetch_assoc();
+            if(password_verify($senha, $usuario['senha'])){
+                if(isset($_SESSION)){
+                    session_start();
+                }
+
+                $_SESSION['usuario'] = $usuario['id'];
+                $_SESSION['admin'] = $usuario['admin'];
+                header("Location: index.php");
+            } else{
+                $erro = "Usuário ou senha incorretos";
+            }
+        } else {
+            $erro = "Usuário ou senha incorretos";
+        }
+    }
+?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -57,7 +89,7 @@
                 <div class="col-sm-12">
                     <!-- Authentication card start -->
                     <div class="login-card card-block auth-body mr-auto ml-auto">
-                        <form class="md-float-material">
+                        <form method="POST" class="md-float-material">
                             <div class="text-center">
                                 <img src="assets/images/auth/logo-dark.png" alt="logo.png">
                             </div>
@@ -69,21 +101,26 @@
                                 </div>
                                 <hr/>
                                 <div class="input-group">
-                                    <input type="email" class="form-control" placeholder="Digite seu E-mail">
+                                    <input type="email" class="form-control" name="email" placeholder="Digite seu E-mail" value="<?php if(isset($_POST['email'])) echo $_POST['email'];?>">
                                     <span class="md-line"></span>
                                 </div>
                                 <div class="input-group">
-                                    <input type="password" class="form-control" placeholder="Senha">
+                                    <input type="password" class="form-control" placeholder="Senha" name="senha">
                                     <span class="md-line"></span>
                                 </div>
+                                <?php 
+                                    if(count($_POST)>1){
+                                        echo "<p style='color: red'>ERRO: $erro</p>";
+                                    }
+                                ?>
                                 <div class="row m-t-25 text-right">
                                     <div class="col-sm-12 col-xs-12 forgot-phone text-right">
-                                        <a href="recuperarSenha.html" class="text-right f-w-600 text-inverse"> Esqueceu sua senha?</a>
+                                        <a href="recuperarSenha.php" class="text-right f-w-600 text-inverse"> Esqueceu sua senha?</a>
                                     </div>
                                 </div>
                                 <div class="row m-t-30">
                                     <div class="col-md-12">
-                                        <button type="button" class="btn btn-primary btn-md btn-block waves-effect text-center m-b-20">Entrar</button>
+                                        <button type="submit" class="btn btn-primary btn-md btn-block waves-effect text-center m-b-20">Entrar</button>
                                     </div>
                                 </div>
                             </div>
