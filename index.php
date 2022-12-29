@@ -140,14 +140,14 @@
                                     </a>
                                 </li>
                                 <li class="">
-                                    <a href="index.html?pagina=lojaDeCursos">
+                                    <a href="index.php?pagina=lojaDeCursos">
                                         <span class="pcoded-micon"><i class="ti-bag"></i><b>D</b></span>
                                         <span class="pcoded-mtext" data-i18n="nav.dash.main">Loja de Cursos</span>
                                         <span class="pcoded-mcaret"></span>
                                     </a>
                                 </li>
                                 <li class="">
-                                    <a href="index.html?pagina=meusCursos">
+                                    <a href="index.php?pagina=meusCursos">
                                         <span class="pcoded-micon"><i class="ti-control-play"></i><b>D</b></span>
                                         <span class="pcoded-mtext" data-i18n="nav.dash.main">Meus Cursos</span>
                                         <span class="pcoded-mcaret"></span>
