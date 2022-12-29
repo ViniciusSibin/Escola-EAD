@@ -1,7 +1,17 @@
 <?php
     $pagina = "paginaInicial";
 
-    if(isset($_GET['pagina'])) $pagina = $_GET['pagina']
+    if(isset($_GET['pagina'])) $pagina = $_GET['pagina'];
+
+    if(!isset($_SESSION)){
+        session_start();
+    }
+
+    if(!isset($_SESSION['usuario'])){
+        header("Location: login.php");
+        die();
+    }
+    
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">

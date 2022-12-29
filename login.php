@@ -1,8 +1,6 @@
 <?php
-    var_dump($_POST);
-    require('assets/conexao.php');
-
     if(count($_POST) > 0){
+        require('assets/conexao.php');
         $erro = false;
 
         $email = $mysqli->escape_string($_POST['email']);
@@ -11,22 +9,21 @@
         $sql = "SELECT * FROM usuario WHERE email = '$email'";
         $sql_query = $mysqli->query($sql) or die($mysqli->error);
 
-        if($sql_query->num_rows > 0){
-            $usuario = $sql_query->fetch_assoc();
-            if(password_verify($senha, $usuario['senha'])){
-                if(isset($_SESSION)){
-                    session_start();
-                }
-
-                $_SESSION['usuario'] = $usuario['id'];
-                $_SESSION['admin'] = $usuario['admin'];
-                header("Location: index.php");
-            } else{
-                $erro = "Usuário ou senha incorretos";
-            }
-        } else {
+        if($sql_query->num_rows == 0){
             $erro = "Usuário ou senha incorretos";
-        }
+            } else{
+                $usuario = $sql_query->fetch_assoc();
+                if(!password_verify($senha, $usuario['senha'])){
+                    $erro = "Usuário ou senha incorretos";
+                } else {
+                    if(!isset($_SESSION)){
+                        session_start();
+                        $_SESSION['usuario'] = $usuario['id'];
+                        $_SESSION['admin'] = $usuario['admin'];
+                        header("Location: index.php");
+                    }
+                }
+            }
     }
 ?>
 
@@ -109,7 +106,7 @@
                                     <span class="md-line"></span>
                                 </div>
                                 <?php 
-                                    if(count($_POST)>1){
+                                    if(count($_POST)>1 && $erro){
                                         echo "<p style='color: red'>ERRO: $erro</p>";
                                     }
                                 ?>
