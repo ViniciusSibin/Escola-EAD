@@ -20,8 +20,6 @@
     $sql_usuario = "SELECT * FROM usuario WHERE id = '$id_Usuario'"; 
     $sql_usuario_query = $mysqli->query($sql_usuario) or die($mysqli->error);
     $usuario = $sql_usuario_query->fetch_assoc();
-
-    var_dump($_POST);
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
