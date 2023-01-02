@@ -64,17 +64,17 @@
                                     <tr>
                                         <td colspan=6><p class="text-danger">Nenhum curso foi cadastrado!!!</p></td>    
                                     </tr>
-                                <?php } 
+                                <?php } else { 
                                 while($curso = $sqlCursoQuery->fetch_assoc()){?>
                                     <tr>
                                         <td><?php echo $curso['id'] ?></td>
                                         <td><img height="45" src="<?php echo $curso['fotoCurso']; ?>" alt=""> </td>
                                         <td><?php echo $curso['titulo'] ?></td>
                                         <td><?php echo $curso['professor'] ?></td>
-                                        <td><?php echo $curso['valor'] ?></td>
+                                        <td>R$<?php echo number_format($curso['valor'], 2, ',', '.'); ?></td>
                                         <td><button type="button" class="btn btn-primary btn-md btn-block waves-effect text-center col-md-8"><a href="index.php?pagina=detalhesCurso&idCurso=<?php echo $curso['id'] ?>" style="text-decoration: none; color: #fff;">Gerenciar</a></button></td>
                                     </tr>
-                                <?php } ?>
+                                <?php } }?>
                             </tbody>
                         </table>
                     </div>
