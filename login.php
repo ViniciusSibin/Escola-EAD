@@ -1,6 +1,6 @@
 <?php
     if(count($_POST) > 0){
-        require('assets/conexao.php');
+        require('lib/conexao.php');
         $erro = false;
 
         $email = $mysqli->escape_string($_POST['email']);

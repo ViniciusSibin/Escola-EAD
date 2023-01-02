@@ -1,5 +1,5 @@
 <?php
-    require_once('assets/conexao.php');
+    require_once('lib/conexao.php');
     
     $sqlCurso = "SELECT * FROM cursos";
     $sqlCursoQuery = $mysqli->query($sqlCurso) or die($mysqli->error);

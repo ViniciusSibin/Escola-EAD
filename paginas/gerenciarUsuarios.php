@@ -1,5 +1,5 @@
 <?php
-    require_once('assets/conexao.php');
+    require_once('lib/conexao.php');
     
     $sqlUsuario = "SELECT * FROM usuarios";
     $sqlUsuarioQuery = $mysqli->query($sqlUsuario) or die($mysqli->error);
