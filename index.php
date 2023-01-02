@@ -1,6 +1,6 @@
 <?php
 
-    require_once('assets/conexao.php');
+    require_once('lib/conexao.php');
     $pagina = "paginaInicial";
     $curso = false;
 
