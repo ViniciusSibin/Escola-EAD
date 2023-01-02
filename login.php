@@ -107,7 +107,7 @@
                                 </div>
                                 <?php 
                                     if(count($_POST)>1 && $erro){
-                                        echo "<p style='color: red'>ERRO: $erro</p>";
+                                        echo "<p class='text-danger'>ERRO: $erro</p>";
                                     }
                                 ?>
                                 <div class="row m-t-25 text-right">
