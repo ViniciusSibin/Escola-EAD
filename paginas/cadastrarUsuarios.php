@@ -1,5 +1,5 @@
 <div class="auth-body mr-auto ml-auto col-md-7">
-    <form class="md-float-material" method="POST">
+    <form class="md-float-material" method="POST" enctype="multpart/form-data">
         <div class="auth-box">
             <div class="col-md-12">
                 <h3 class="text-left txt-primary">Cadastrar novo usuário</h3>
