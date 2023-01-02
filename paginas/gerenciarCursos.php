@@ -1,3 +1,11 @@
+<?php
+    require_once('assets/conexao.php');
+    
+    $sqlCurso = "SELECT * FROM cursos";
+    $sqlCursoQuery = $mysqli->query($sqlCurso) or die($mysqli->error);
+    $sqlCursoLinhas = $sqlCursoQuery->num_rows;
+?>
+
 <!-- Page-header start -->
 <div class="page-header card">
 <div class="row align-items-end">
@@ -46,32 +54,27 @@
                                     <th>#</th>
                                     <th>Imagem</th>
                                     <th>Título</th>
+                                    <th>Professor</th>
                                     <th>Preço</th>
                                     <th>Gerenciar</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <th scope="row">1</th>
-                                    <td>Mark</td>
-                                    <td>Otto</td>
-                                    <td>@mdo</td>
-                                    <td>@mdo</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">2</th>
-                                    <td>Jacob</td>
-                                    <td>Thornton</td>
-                                    <td>@fat</td>
-                                    <td>@mdo</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">3</th>
-                                    <td>Larry</td>
-                                    <td>the Bird</td>
-                                    <td>@twitter</td>
-                                    <td>@mdo</td>
-                                </tr>
+                                <?php if($sqlCursoLinhas == 0){ ?>
+                                    <tr>
+                                        <td colspan=6><p class="text-danger">Nenhum curso foi cadastrado!!!</p></td>    
+                                    </tr>
+                                <?php } 
+                                while($curso = $sqlCursoQuery->fetch_assoc()){?>
+                                    <tr>
+                                        <td><?php echo $curso['id'] ?></td>
+                                        <td><img height="45" src="<?php echo $curso['fotoCurso']; ?>" alt=""> </td>
+                                        <td><?php echo $curso['titulo'] ?></td>
+                                        <td><?php echo $curso['professor'] ?></td>
+                                        <td><?php echo $curso['valor'] ?></td>
+                                        <td><button type="button" class="btn btn-primary btn-md btn-block waves-effect text-center col-md-8"><a href="index.php?pagina=detalhesCurso&idCurso=<?php echo $curso['id'] ?>" style="text-decoration: none; color: #fff;">Gerenciar</a></button></td>
+                                    </tr>
+                                <?php } ?>
                             </tbody>
                         </table>
                     </div>
@@ -80,6 +83,3 @@
         </div>
     </div>
 </div>
-
-
-
