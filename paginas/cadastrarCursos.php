@@ -1,4 +1,3 @@
-
 <div class="auth-body mr-auto ml-auto col-md-6">
     <form class="md-float-material">
         <div class="auth-box">
