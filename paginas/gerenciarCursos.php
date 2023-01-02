@@ -32,16 +32,10 @@
         <div class="col-sm-12">
             <div class="card">
                 <div class="card-header">
-                    <h5>Todos os cursos</h5>
-                    <span>Aqui estão todos os cursos cadastrados</span>
-                    <div class="card-header-right">    
-                        <ul class="list-unstyled card-option">       
-                            <li><i class="icofont icofont-simple-left "></i></li> 
-                            <li><i class="icofont icofont-maximize full-card"></i></li>
-                            <li><i class="icofont icofont-minus minimize-card"></i></li>
-                            <li><i class="icofont icofont-refresh reload-card"></i></li>
-                            <li><i class="icofont icofont-error close-card"></i></li>
-                        </ul>
+                    <h4>Todos os cursos</h4>
+                    <div class="row align-items-center" >
+                        <div class="col-sm-10"><span>Aqui estão todos os cursos cadastrados</span></div>
+                        <div class="col-sm-2"><button type="button" class="btn btn-primary btn-md btn-block waves-effect text-center"><a href="index.php?pagina=cadastrarCursos" style="text-decoration: none; color: #fff;">Cadastrar Curso</a></button></div>
                     </div>
                 </div>
                 <div class="card-block table-border-style">
@@ -50,9 +44,10 @@
                             <thead>
                                 <tr>
                                     <th>#</th>
-                                    <th>First Name</th>
-                                    <th>Last Name</th>
-                                    <th>Username</th>
+                                    <th>Imagem</th>
+                                    <th>Título</th>
+                                    <th>Preço</th>
+                                    <th>Gerenciar</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -61,18 +56,21 @@
                                     <td>Mark</td>
                                     <td>Otto</td>
                                     <td>@mdo</td>
+                                    <td>@mdo</td>
                                 </tr>
                                 <tr>
                                     <th scope="row">2</th>
                                     <td>Jacob</td>
                                     <td>Thornton</td>
                                     <td>@fat</td>
+                                    <td>@mdo</td>
                                 </tr>
                                 <tr>
                                     <th scope="row">3</th>
                                     <td>Larry</td>
                                     <td>the Bird</td>
                                     <td>@twitter</td>
+                                    <td>@mdo</td>
                                 </tr>
                             </tbody>
                         </table>
