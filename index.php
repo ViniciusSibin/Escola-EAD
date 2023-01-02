@@ -224,7 +224,6 @@
                     <!-- inicio do bory -->
                     <div class="pcoded-content">
                         <div class="pcoded-inner-content">
-
                             <div class="main-body">
                                 <div class="page-wrapper">
                                     <?php if($curso) require("$curso"); else require("paginas/$pagina.php"); ?>
