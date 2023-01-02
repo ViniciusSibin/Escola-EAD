@@ -43,7 +43,7 @@
                     <h4>Todos os usuários</h4>
                     <div class="row align-items-center" >
                         <div class="col-sm-10"><span>Aqui estão todos os usuários cadastrados</span></div>
-                        <div class="col-sm-2"><button type="button" class="btn btn-primary btn-md btn-block waves-effect text-center"><a href="index.php?pagina=cadastrarCursos" style="text-decoration: none; color: #fff;">Cadastrar Usuário</a></button></div>
+                        <div class="col-sm-2"><button type="button" class="btn btn-primary btn-md btn-block waves-effect text-center"><a href="index.php?pagina=cadastrarUsuarios" style="text-decoration: none; color: #fff;">Cadastrar Usuário</a></button></div>
                     </div>
                 </div>
                 <div class="card-block table-border-style">
