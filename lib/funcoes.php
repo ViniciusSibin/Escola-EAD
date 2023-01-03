@@ -21,6 +21,19 @@
     function visualizaDataBanco($str){
         return date("d/m/Y H:i:s", strtotime($str));
     }
+
+    function verificaUsuario($usuario, $tamMin = 5, $tamMax = 30){
+        $erro = false;
+        if(empty($usuario)){
+            $erro = "O campo titulo não pode ser vazio!";
+        } elseif (strlen($usuario) < $tamMin || strlen($usuario) > $tamMax){
+            $erro = "O campo titulo deve conter entre 5 e 100 caracteres!";
+        } elseif(preg_match("/[^a-zA-Z0-9'-'_' ']/i",$usuario)){
+            $erro = "O titulo não deve conter caracteres especiais!!";
+        }
+
+        return $erro;
+    }
     
     use PHPMailer\PHPMailer\PHPMailer;
     function enviarEmail($destinatario, $assunto, $mensagem){
