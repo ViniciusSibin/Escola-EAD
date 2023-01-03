@@ -5,23 +5,37 @@ if(isset($_POST['enviar'])){
     include('lib/funcoes.php');
 
     $erro = false;
-
-    var_dump($_POST);
-    var_dump($_FILES);
     
     $titulo = $_POST['titulo'];
     $professor = $_POST['professor'];
     $carga = $_POST['carga'];
     $valor = $_POST['valor'];
     $fotoCurso = $_FILES['fotoCurso'];
-    $descricao = $_POST['descricao'];
-    $conteudo = $_POST['conteudo'];
+    $descricao = $mysqli->escape_string($_POST['descricao']);
+    $conteudo = $mysqli->escape_string($_POST['conteudo']);
 
-    $erro = verificaUsuario($titulo, 5, 100, 'titulo');
-    $erro = verificaUsuario($professor, 5, 50, "professor");
+    if(verificaUsuario($titulo, 5, 100, 'titulo')){
+        $erro = verificaUsuario($titulo, 5, 100, 'titulo');
+    }
+    
+    if(verificaUsuario($professor, 5, 50, "professor")){
+        $erro = verificaUsuario($professor, 5, 50, "professor");
+    }
 
+    if($fotoCurso['size'] == 0 || $fotoCurso['name'] == ''){
+        $erro = "O curso deve conter 1 imagem";
+    }
+
+    if(empty($descricao)){
+        $erro = "A descrição não pode estar vazia!";
+    } elseif (strlen($descricao)<10 || strlen($descricao)>100){
+        $erro = "A descrição deve ter entre 10 e 300 caracteres!";
+    }
     if(!$erro){
-
+        $pathFotoCurso = uploadArquivo ($fotoCurso['error'], $fotoCurso['size'], $fotoCurso['name'], $fotoCurso['tmp_name'], 'assets/images/cursos/');
+       
+        $sqlCadastroCurso = "INSERT INTO cursos (titulo, descricao, professor, carga, valor, fotoCurso, dataCadastro, conteudo) VALUES ('$titulo', '$descricao', '$professor', '$carga' ,'$valor' ,'$pathFotoCurso' , NOW(), '$conteudo')";
+        $sqlCadastroCursoQuery = $mysqli->query($sqlCadastroCurso) or die($mysqli->error);
     }
 }
 
@@ -91,7 +105,7 @@ if(isset($_POST['enviar'])){
             }?>
             <div class="row m-t-20">
                 <div class="col-md-6">
-                    <a href="login.html" class="btn hor-grd btn-grd-danger btn-md btn-block waves-effect text-center m-b-20">Cancelar</a>
+                    <a href="index.php?pagina=gerenciarCursos" class="btn hor-grd btn-grd-danger btn-md btn-block waves-effect text-center m-b-20">Cancelar</a>
                 </div>
                 <div class="col-md-6">
                     <button type="submit" name='enviar' value='1' class="btn hor-grd btn-grd-primary btn-md btn-block waves-effect text-center m-b-20"><i class="ti-save"></i>Enviar</button>
