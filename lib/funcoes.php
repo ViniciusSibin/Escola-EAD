@@ -22,18 +22,19 @@
         return date("d/m/Y H:i:s", strtotime($str));
     }
 
-    function verificaUsuario($usuario, $tamMin = 5, $tamMax = 30){
+    function verificaUsuario($usuario, $tamMin = 5, $tamMax = 30, $nome = ''){
         $erro = false;
         if(empty($usuario)){
-            $erro = "O campo titulo não pode ser vazio!";
+            $erro = "O campo $nome não pode ser vazio!";
         } elseif (strlen($usuario) < $tamMin || strlen($usuario) > $tamMax){
-            $erro = "O campo titulo deve conter entre 5 e 100 caracteres!";
+            $erro = "O campo $nome deve conter entre 5 e 100 caracteres!";
         } elseif(preg_match("/[^a-zA-Z0-9'-'_' ']/i",$usuario)){
-            $erro = "O titulo não deve conter caracteres especiais!!";
+            $erro = "O $nome não deve conter caracteres especiais!!";
         }
 
         return $erro;
     }
+    
     
     use PHPMailer\PHPMailer\PHPMailer;
     function enviarEmail($destinatario, $assunto, $mensagem){
