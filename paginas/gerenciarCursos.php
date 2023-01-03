@@ -22,7 +22,7 @@
             <div class="page-header-breadcrumb">
                 <ul class="breadcrumb-title">
                     <li class="breadcrumb-item">
-                        <a href="index.php">
+                        <a href="index.php?paginaInicial">
                             <i class="icofont icofont-home"></i>
                         </a>
                     </li>
@@ -43,7 +43,7 @@
                     <h4>Todos os cursos</h4>
                     <div class="row align-items-center" >
                         <div class="col-sm-10"><span>Aqui estão todos os cursos cadastrados</span></div>
-                        <div class="col-sm-2"><button type="button" class="btn btn-primary btn-md btn-block waves-effect text-center"><a href="index.php?pagina=cadastrarCursos" style="text-decoration: none; color: #fff;">Cadastrar Curso</a></button></div>
+                        <div class="col-sm-2"><button type="button" class="btn hor-grd btn-grd-primary btn-md btn-block waves-effect text-center"><a href="index.php?pagina=cadastrarCursos" style="text-decoration: none; color: #fff;">Cadastrar Curso</a></button></div>
                     </div>
                 </div>
                 <div class="card-block table-border-style">
@@ -72,7 +72,7 @@
                                         <td><?php echo $curso['titulo'] ?></td>
                                         <td><?php echo $curso['professor'] ?></td>
                                         <td>R$<?php echo number_format($curso['valor'], 2, ',', '.'); ?></td>
-                                        <td><button type="button" class="btn btn-primary btn-md btn-block waves-effect text-center col-md-8"><a href="index.php?pagina=detalhesCurso&idCurso=<?php echo $curso['id'] ?>" style="text-decoration: none; color: #fff;">Gerenciar</a></button></td>
+                                        <td><button type="button" class="btn hor-grd btn-grd-info btn-md btn-block waves-effect text-center col-md-8"><a href="index.php?pagina=detalhesCurso&idCurso=<?php echo $curso['id'] ?>" style="text-decoration: none; color: #fff;">Gerenciar</a></button></td>
                                     </tr>
                                 <?php } }?>
                             </tbody>
