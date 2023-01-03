@@ -34,6 +34,19 @@
 
         return $erro;
     }
+
+    function verificaSenha($senha, $tamMin = 6, $tamMax = 15,){
+        $erro = false;
+        if(empty($senha)){
+            $erro = "O campo senha não pode ser vazio!";
+        } elseif (strlen($senha) < $tamMin || strlen($senha) > $tamMax){
+            $erro = "O campo senha deve conter entre 5 e 100 caracteres!";
+        } elseif(!preg_match("/[^a-zA-Z0-9'-'_' ']/i",$senha)){
+            $erro = "O senha deve conter caracteres especiais!!";
+        }
+
+        return $erro;
+    }
     
     
     use PHPMailer\PHPMailer\PHPMailer;
