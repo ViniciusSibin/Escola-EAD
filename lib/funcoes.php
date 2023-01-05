@@ -35,7 +35,7 @@
         return $erro;
     }
 
-    function verificaSenha($senha, $tamMin = 6, $tamMax = 15,){
+    function verificaSenha($senha, $tamMin = 6, $tamMax = 15){
         $erro = false;
         if(empty($senha)){
             $erro = "O campo senha não pode ser vazio!";
