@@ -6,7 +6,7 @@
         $email = $mysqli->escape_string($_POST['email']);
         $senha = $_POST['senha'];
 
-        $sql = "SELECT * FROM usuario WHERE email = '$email'";
+        $sql = "SELECT * FROM usuarios WHERE email = '$email'";
         $sql_query = $mysqli->query($sql) or die($mysqli->error);
 
         if($sql_query->num_rows == 0){
