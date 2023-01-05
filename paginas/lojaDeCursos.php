@@ -1,3 +1,10 @@
+<?php 
+    require('lib/conexao.php');
+
+    $sqlCurso = "SELECT * FROM cursos";
+    $sqlCursoQuery = $mysqli->query($sqlCurso) or die($mysqli->error);
+    $sqlCursoLinhas = $sqlCursoQuery->num_rows;    
+?>
 <!-- Page-header start -->
 <div class="page-header card">
 <div class="row align-items-end">
@@ -29,28 +36,28 @@
 
 <div class="page-body">
     <div class="row">
-        <div class="col-sm-3">
-            <div class="card">
-                <div class="card-block">
-                    <img src="assets/images/bg.jpg" alt="" class="img-fluid mb-3">
-                    <h1>Nome do curso</h1>
-                    <div class="row align-items-end">
-                    <p class="col-lg-8">Nome do professor</p>
-                    <P class="col-lg-4">Carga: 32H</P>
+        <?php if($sqlCursoLinhas == 0){ ?>
+            <div class="h1">Nenhum curso cadastrado!</div>
+        <?php } else {
+            while($curso = $sqlCursoQuery->fetch_assoc()){?>
+                <div class="col-md-3">
+                    <div class="card">
+                        <div class="card-block">
+                            <img src="<?php echo $curso['fotoCurso']; ?>" alt="" class="img-fluid mb-5">
+                            <h3><?php echo $curso['titulo']; ?></h3>
+                            <div class="row align-items-end">
+                            <p class="col-lg-9"><?php echo $curso['professor']; ?></p>
+                            <P class="col-lg-3 text-md-end" style="text-align: right"><?php echo $curso['carga']; ?>Hs</P>
+                        </div>
+                        <p><?php echo $curso['descricao']; ?></p>
+                        <form method="POST" action="">
+                            <a class="btn btn-primary btn-md btn-block waves-effect text-center m-b-20" href="index.php?pagina=lojaDeCursosDetalhes&id=<?php echo $curso['id']; ?>">Valor: R$<?php echo str_replace('.', ',', $curso['valor']); ?></a>
+                        </form>
+                        </div>
                     </div>
-                   
-                    <p>
-                        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                        eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-                        enim ad minim veniam, quis nostrud ...
-                    </p>
-                    <form method="POST" action="">
-                        <button type="submit" name="detalhe" value="1" class="btn btn-primary btn-md btn-block waves-effect text-center m-b-20">Saiba Mais</button>
-                    </form>
-                    
                 </div>
-            </div>
-        </div>
+            <?php }
+        }?>
     </div>
 </div>
 
