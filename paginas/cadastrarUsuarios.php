@@ -13,7 +13,6 @@ if(isset($_POST['enviar'])){
     $senha = $_POST['senha'];
     $confirmarSenha = $_POST['confirmarSenha'];
     $admin = $_POST['admin'];
-    $fotoPerfil = $_FILES['fotoPerfil'];
     
 
     if(verificaUsuario($nome, 5, 70, 'nome')){
@@ -30,7 +29,7 @@ if(isset($_POST['enviar'])){
 
     if(empty($telefone)){
         $erro = "O campo telefone deve ser preenchido!";
-    } elseif($telefone != 11){
+    } elseif(strlen($telefone) != 11){
         $erro = "Telefone incorreto!";
     }
 
@@ -40,30 +39,41 @@ if(isset($_POST['enviar'])){
         $erro = "A data de nascimento está fora do padrão, EX: dd/mm/aaaa!";
     }
     
-    if($fotoPerfil['size'] == 0 || $fotoPerfil['name'] == ''){
-        $erro = "O usuário deve conter 1 imagem";
-    }
 
-    if(verificaSenha($nome)){
-        $erro = verificaSenha($nome);
+    if(verificaSenha($senha)){
+        $erro = verificaSenha($senha);
     }
 
     if($senha != $confirmarSenha){
         $erro = "As senhas não coincidem";
     }
 
-    if(!$erro){
-        $pathFotoUsuario = uploadArquivo ($fotoUsuario['error'], $fotoUsuario['size'], $fotoUsuario['name'], $fotoUsuario['tmp_name'], 'assets/images/usuarios/');
-        $senha = password_hash($senha, PASSWORD_DEFAULT);
+    $pathFotoUsuario = "";
+    $arq = $_FILES['fotoPerfil'];
+    if(!empty($arq['name']) && !empty($arq['size'])){
+        $pathFotoUsuario = uploadArquivo ($arq['error'], $arq['size'], $arq['name'], $arq['tmp_name'], "assets/images/perfil/");
+        if($pathFotoUsuario == 1){
+            $erro = "Imagem com erro!";
+        } else if($pathFotoUsuario == 2) {
+            $erro = "Arquivo muito grande!! Max: 2MB";
+        } else if($pathFotoUsuario == 3) {
+            $erro = "Tipo de arquivo não aceito, tipos aceitos:<br> <b>jpg</b>, <b>png</b>";
+        }
+    }
 
-        $sqlCadastroUsuario = "INSERT INTO usuarios (titulo, descricao, professor, carga, valor, fotoCurso, dataCadastro, conteudo) VALUES ('$titulo', '$descricao', '$professor', '$carga' ,'$valor' ,'$pathFotoCurso' , NOW(), '$conteudo')";
+    if(!$erro){
+        $senhaCriptografana = password_hash($senha, PASSWORD_DEFAULT);
+
+        $sqlCadastroUsuario = "INSERT INTO usuarios (nome, email, senha, telefone, nascimento, fotoPerfil, admin, dataCadastro) VALUES ('$nome', '$email', '$senhaCriptografana', '$telefone' ,'$nascimento' ,'$pathFotoUsuario', '$admin' , NOW())";
         $sqlCadastroUsuarioQuery = $mysqli->query($sqlCadastroUsuario) or die($mysqli->error);
     }
+
+    var_dump($erro);
 }
 
 ?>
 <div class="auth-body mr-auto ml-auto col-md-7">
-    <form class="md-float-material" method="POST" enctype="multpart/form-data">
+    <form class="md-float-material" method="POST" enctype="multipart/form-data">
         <div class="auth-box">
             <div class="col-md-12">
                 <h3 class="text-left txt-primary">Cadastrar novo usuário</h3>
@@ -116,15 +126,16 @@ if(isset($_POST['enviar'])){
             <div class="form-group row">
                 <label class="col-sm-2 col-form-label">Foto de Perfil: </label>
                 <div class="col-sm-10">
-                    <input type="file" class="" name="fotoPerfil" value="<?php if(isset($_POST['fotoPerfil'])) echo $_POST['fotoPerfil'] ?>">
+                    <input type="file" name="fotoPerfil">
                 </div>
             </div>
-            <?php if(count($_POST) > 0 && $erro){ ?>
+            <?php
+                if(count($_POST) > 0 && $erro){ ?>
                 <div class="form-group row">
                     <label class="col-sm-2 col-form-label"></label>
                     <p class="col-sm-10 col-form-label text-danger">ERRO: <?php echo $erro ?></p>
                 </div>
-            <?php } elseif (count($_POST) > 0) {?>
+            <?php } else {?>
                 <div class="form-group row">
                     <label class="col-sm-2 col-form-label"></label>
                     <p class="col-sm-10 col-form-label text-success">Usuário cadastrado com sucesso!</p>
@@ -137,7 +148,7 @@ if(isset($_POST['enviar'])){
                     <a href="index.php?pagina=gerenciarUsuarios" class="btn btn-danger btn-md btn-block waves-effect text-center m-b-20">Cancelar</a>
                 </div>
                 <div class="col-md-6">
-                    <button type="submit" class="btn btn-primary btn-md btn-block waves-effect text-center m-b-20">Enviar</button>
+                    <button type="submit" name="enviar" value="0" class="btn btn-primary btn-md btn-block waves-effect text-center m-b-20">Enviar</button>
                 </div>
             </div>
         </div>
