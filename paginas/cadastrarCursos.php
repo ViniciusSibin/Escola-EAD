@@ -20,7 +20,7 @@ if(isset($_POST['enviar'])){
     if(verificaUsuario($professor, 5, 50, "professor")){
         $erro[] = verificaUsuario($professor, 5, 50, "professor");
     }
-    
+
     $pathFotoCurso = "";
     $arq = $_FILES['fotoCurso'];
     if(empty($arq['name']) && empty($arq['size'])){
@@ -52,7 +52,12 @@ if(isset($_POST['enviar'])){
 
     if(!$erro){
         $sqlCadastroCurso = "INSERT INTO cursos (titulo, descricao, professor, carga, valor, fotoCurso, dataCadastro, conteudo) VALUES ('$titulo', '$descricao', '$professor', '$carga' ,'$valor' ,'$pathFotoCurso' , NOW(), '$conteudo')";
-        $sqlCadastroCursoQuery = $mysqli->query($sqlCadastroCurso) or die($mysqli->error);
+        $sqlCadastroCursoQuery = $mysqli->query($sqlCadastroCurso);
+        if(!$sqlCadastroCursoQuery){
+            $erro[] = "Falha ao inserir no banco de dados: " . $mysqli->error;
+        } else {
+            die("<script>location.href=\"index.php?pagina=gerenciarCursos\";</script>");
+        }
     }
 }
 
@@ -67,15 +72,9 @@ if(isset($_POST['enviar'])){
                        <b>ERRO:</b> <?php echo $e;?><br>
                     <?php } ?>
                 </div>
-            <?php } else if (isset($erro) > 0 && !$erro) {?>
-                <div class="alert alert-success">
-                    <p>Curso cadastrado com sucesso!</p>
-                </div>
-            <?php 
-             unset($_POST);
-            }?>
+            <?php } ?>
             <div class="col-md-12">
-                <h3 class="text-left txt-primary">Cadastrar novo curso</h3>
+                <h2 class="text-left txt-primary">Cadastrar novo curso</h2>
                 <p class="m-t-30 text-left" style="color: black;">Informe os dados abaixo para cadastrar o curso!</p>
             </div>
             <hr/>
