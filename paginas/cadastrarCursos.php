@@ -14,31 +14,41 @@ if(isset($_POST['enviar'])){
     $conteudo = $mysqli->escape_string($_POST['conteudo']);
 
     if(verificaUsuario($titulo, 5, 100, 'titulo')){
-        $erro = verificaUsuario($titulo, 5, 100, 'titulo');
+        $erro[] = verificaUsuario($titulo, 5, 100, 'titulo');
     }
     
     if(verificaUsuario($professor, 5, 50, "professor")){
-        $erro = verificaUsuario($professor, 5, 50, "professor");
+        $erro[] = verificaUsuario($professor, 5, 50, "professor");
+    }
+    
+    $pathFotoCurso = "";
+    $arq = $_FILES['fotoCurso'];
+    if(empty($arq['name']) && empty($arq['size'])){
+        $erro[] = "O curso deve conter pelo menos 1 imagem!";
+    } else {
+        $pathFotoCurso = uploadArquivo ($arq['error'], $arq['size'], $arq['name'], $arq['tmp_name'], "assets/images/cursos/");
+        if($pathFotoCurso == 1){
+            $erro[] = "Imagem com erro!";
+        } else if($pathFotoCurso == 2) {
+            $erro[] = "Arquivo muito grande!! Max: 2MB";
+        } else if($pathFotoCurso == 3) {
+            $erro[] = "Tipo de arquivo não aceito, tipos aceitos:<br> <b>jpg</b>, <b>png</b>";
+        }
     }
 
     if(empty($descricao)){
-        $erro = "A descrição não pode estar vazia!";
+        $erro[] = "A campo descrição não pode estar vazia!";
     } elseif (strlen($descricao)<10 || strlen($descricao)>100){
-        $erro = "A descrição deve ter entre 10 e 300 caracteres!";
+        $erro[] = "A campo descrição deve ter entre 10 e 300 caracteres!";
     }
 
-    $pathFotoCurso = "";
-    $arq = $_FILES['fotoCurso'];
-    if(!empty($arq['name']) && !empty($arq['size'])){
-        $pathFotoCurso = uploadArquivo ($arq['error'], $arq['size'], $arq['name'], $arq['tmp_name'], "assets/images/cursos/");
-        if($pathFotoCurso == 1){
-            $erro = "Imagem com erro!";
-        } else if($pathFotoCurso == 2) {
-            $erro = "Arquivo muito grande!! Max: 2MB";
-        } else if($pathFotoCurso == 3) {
-            $erro = "Tipo de arquivo não aceito, tipos aceitos:<br> <b>jpg</b>, <b>png</b>";
-        }
+    if(empty($conteudo)){
+        $erro[] = "O campo conteúdo não pode estar vazia!";
+    } elseif (strlen($conteudo)<10 || strlen($conteudo)>1000){
+        $erro[] = "O campo conteúdo deve ter entre 10 e 300 caracteres!";
     }
+
+
 
     if(!$erro){
         $sqlCadastroCurso = "INSERT INTO cursos (titulo, descricao, professor, carga, valor, fotoCurso, dataCadastro, conteudo) VALUES ('$titulo', '$descricao', '$professor', '$carga' ,'$valor' ,'$pathFotoCurso' , NOW(), '$conteudo')";
@@ -49,7 +59,21 @@ if(isset($_POST['enviar'])){
 ?>
 <div class="auth-body mr-auto ml-auto col-md-5">
     <form class="md-float-material" method="POST" enctype="multipart/form-data">
+       
         <div class="auth-box">
+            <?php if(isset($erro) > 0 && $erro){ ?>
+                <div class="alert alert-danger">
+                    <?php foreach($erro as $e){?>
+                       <b>ERRO:</b> <?php echo $e;?><br>
+                    <?php } ?>
+                </div>
+            <?php } else if (isset($erro) > 0 && !$erro) {?>
+                <div class="alert alert-success">
+                    <p>Curso cadastrado com sucesso!</p>
+                </div>
+            <?php 
+             unset($_POST);
+            }?>
             <div class="col-md-12">
                 <h3 class="text-left txt-primary">Cadastrar novo curso</h3>
                 <p class="m-t-30 text-left" style="color: black;">Informe os dados abaixo para cadastrar o curso!</p>
@@ -97,19 +121,7 @@ if(isset($_POST['enviar'])){
                     <textarea rows="5" col="5" class="form-control" min="10" max="1000" placeholder="Conteúdo do curso, max 1000 caracteres" name="conteudo" value="<?php if(isset($_POST['conteudo'])) echo $_POST['conteudo']; ?>"></textarea>
                 </div>
             </div>
-            <?php if(count($_POST) > 0 && $erro){ ?>
-                <div class="form-group row">
-                    <label class="col-sm-2 col-form-label"></label>
-                    <p class="col-sm-10 col-form-label text-danger">ERRO: <?php echo $erro ?></p>
-                </div>
-            <?php } else if (count($_POST) > 0) {?>
-                <div class="form-group row">
-                    <label class="col-sm-2 col-form-label"></label>
-                    <p class="col-sm-10 col-form-label text-success">Curso cadastrado com sucesso!</p>
-                </div>
-            <?php 
-             unset($_POST);
-            }?>
+            
             <div class="row m-t-20">
                 <div class="col-md-6">
                     <a href="index.php?pagina=gerenciarCursos" class="btn hor-grd btn-grd-danger btn-md btn-block waves-effect text-center m-b-20">Cancelar</a>
