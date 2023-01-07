@@ -189,14 +189,14 @@
                                     </a>
                                 </li>
                                 <li class="">
-                                    <a href="index.php?pagina=gerenciarCursos">
+                                    <a href="index.php?pagina=curso-gerenciar">
                                         <span class="pcoded-micon"><i class="ti-bag"></i><b>D</b></span>
                                         <span class="pcoded-mtext" data-i18n="nav.dash.main">Gerenciar Cursos</span>
                                         <span class="pcoded-mcaret"></span>
                                     </a>
                                 </li>
                                 <li class="">
-                                    <a href="index.php?pagina=gerenciarUsuarios">
+                                    <a href="index.php?pagina=usuario-gerenciar">
                                         <span class="pcoded-micon"><i class="ti-user"></i><b>D</b></span>
                                         <span class="pcoded-mtext" data-i18n="nav.dash.main">Gerenciar Usuários</span>
                                         <span class="pcoded-mcaret"></span>
