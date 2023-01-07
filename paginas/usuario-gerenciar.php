@@ -1,5 +1,6 @@
 <?php
     require_once('lib/conexao.php');
+    require_once('lib/funcoes.php');
     
     $sqlUsuario = "SELECT * FROM usuarios";
     $sqlUsuarioQuery = $mysqli->query($sqlUsuario) or die($mysqli->error);
@@ -75,7 +76,7 @@
                                         <td><?php echo $usuario['nome'] ?></td>
                                         <td><?php echo $usuario['email'] ?></td>
                                         <td><?php if($usuario['admin']) echo "SIM"; else echo "NÃO"; ?></td>
-                                        <td><?php echo $usuario['dataCadastro'] ?></td>
+                                        <td><?php echo visualizaDataBanco($usuario['dataCadastro']) ?></td>
                                         <td>
                                             <div class="row col-md-12">
                                                 <div class="col-md-6">
