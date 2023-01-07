@@ -56,6 +56,7 @@
                                     <th>Título</th>
                                     <th>Professor</th>
                                     <th>Preço</th>
+                                    <th>Carga</th>
                                     <th>Gerenciar</th>
                                 </tr>
                             </thead>
@@ -72,8 +73,9 @@
                                         <td><?php echo $curso['titulo'] ?></td>
                                         <td><?php echo $curso['professor'] ?></td>
                                         <td>R$<?php echo number_format($curso['valor'], 2, ',', '.'); ?></td>
-                                        <td class="row">
-                                            <div class="row m-t-20">
+                                        <td><?php echo $curso['carga'] ?>Hs</td>
+                                        <td>
+                                            <div class="row col-md-12">
                                                 <div class="col-md-6">
                                                     <a class="btn hor-grd btn-grd-info btn-md btn-block waves-effect text-center" href="index.php?pagina=curso-editar&idCurso=<?php echo $curso['id']?>" style="text-decoration: none; color: #fff;">Editar</a>
                                                 </div>
