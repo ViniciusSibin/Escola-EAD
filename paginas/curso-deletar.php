@@ -13,6 +13,7 @@
         if(!$sqlDeletaCursoQuery){
             $erro = "Falha ao deletar o curso do banco de dados";
         } else {
+            unlink($curso['fotoCurso']);
             die("<script>location.href=\"index.php?pagina=curso-gerenciar\"</script>");
         }
     }
