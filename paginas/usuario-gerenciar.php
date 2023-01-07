@@ -43,7 +43,9 @@
                     <h4>Todos os usuários</h4>
                     <div class="row align-items-center" >
                         <div class="col-sm-10"><span>Aqui estão todos os usuários cadastrados</span></div>
-                        <div class="col-sm-2"><button type="button" class="btn btn-primary btn-md btn-block waves-effect text-center"><a href="index.php?pagina=usuario-cadastrar" style="text-decoration: none; color: #fff;">Cadastrar Usuário</a></button></div>
+                        <div class="col-sm-2">
+                            <a class="btn hor-grd btn-grd-primary btn-md btn-block waves-effect text-center" href="index.php?pagina=usuario-cadastrar" style="text-decoration: none; color: #fff;">Cadastrar Usuário</a>
+                        </div>
                     </div>
                 </div>
                 <div class="card-block table-border-style">
@@ -74,7 +76,16 @@
                                         <td><?php echo $usuario['email'] ?></td>
                                         <td><?php if($usuario['admin']) echo "SIM"; else echo "NÃO"; ?></td>
                                         <td><?php echo $usuario['dataCadastro'] ?></td>
-                                        <td><button type="button" class="btn btn-info btn-md btn-block waves-effect text-center col-md-8 p-1"><a href="index.php?pagina=detalhesUsuario&idUsuario=<?php echo $usuario['id'] ?>" style="text-decoration: none; color: #fff;">Gerenciar</a></button></td>
+                                        <td>
+                                            <div class="row col-md-12">
+                                                <div class="col-md-6">
+                                                    <a class="btn hor-grd btn-grd-info btn-md btn-block waves-effect text-center" href="index.php?pagina=usuario-editar&idUsuario=<?php echo $usuario['id']?>" style="text-decoration: none; color: #fff;">Editar</a>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <a class="btn hor-grd btn-grd-danger btn-md btn-block waves-effect text-center" href="index.php?pagina=usuario-deletar&idUsuario=<?php echo $usuario['id']?>" style="text-decoration: none; color: #fff;">Deletar</a>
+                                                </div>
+                                            </div>    
+                                        </td>
                                     </tr>
                                 <?php } ?>
                             </tbody>
