@@ -28,10 +28,10 @@
             <hr/>
             <div class="row m-t-20">
                 <div class="col-md-6">
-                    <button type="submit" name="confirma" value="1" class="btn hor-grd btn-grd-success btn-md btn-block waves-effect text-center">Deletar</a>
+                    <a class="btn hor-grd btn-grd-danger btn-md btn-block waves-effect text-center" href="index.php?pagina=curso-gerenciar" style="text-decoration: none; color: #fff;">Cancelar</a>
                 </div>
                 <div class="col-md-6">
-                    <a class="btn hor-grd btn-grd-danger btn-md btn-block waves-effect text-center" href="index.php?pagina=curso-gerenciar" style="text-decoration: none; color: #fff;">Cancelar</a>
+                    <button type="submit" name="confirma" value="1" class="btn hor-grd btn-grd-success btn-md btn-block waves-effect text-center">Deletar</a>
                 </div>
             </div>
         </div>
