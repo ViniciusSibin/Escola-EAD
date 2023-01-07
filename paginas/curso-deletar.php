@@ -6,7 +6,6 @@
     $sqlCursoQuery = $mysqli->query($sqlCurso);
     $curso = $sqlCursoQuery->fetch_assoc();
     
-    var_dump($curso);
     if(isset($_POST['confirma'])){
         $sqlDeletaCurso = "DELETE FROM cursos WHERE id = '$idCurso'";
         $sqlDeletaCursoQuery = $mysqli->query($sqlDeletaCurso);
