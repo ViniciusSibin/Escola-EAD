@@ -72,7 +72,16 @@
                                         <td><?php echo $curso['titulo'] ?></td>
                                         <td><?php echo $curso['professor'] ?></td>
                                         <td>R$<?php echo number_format($curso['valor'], 2, ',', '.'); ?></td>
-                                        <td><button type="button" class="btn hor-grd btn-grd-info btn-md btn-block waves-effect text-center col-md-8"><a href="index.php?pagina=detalhesCurso&idCurso=<?php echo $curso['id'] ?>" style="text-decoration: none; color: #fff;">Gerenciar</a></button></td>
+                                        <td class="row">
+                                            <div class="row m-t-20">
+                                                <div class="col-md-6">
+                                                    <a class="btn hor-grd btn-grd-info btn-md btn-block waves-effect text-center" href="index.php?pagina=curso-editar&idCurso=<?php echo $curso['id']?>" style="text-decoration: none; color: #fff;">Editar</a>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <a class="btn hor-grd btn-grd-danger btn-md btn-block waves-effect text-center" href="index.php?pagina=curso-deletar&idCurso=<?php echo $curso['id']?>" style="text-decoration: none; color: #fff;">Deletar</a>
+                                                </div>
+                                            </div>
+                                        </td>
                                     </tr>
                                 <?php } }?>
                             </tbody>
