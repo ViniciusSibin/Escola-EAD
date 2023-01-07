@@ -75,7 +75,7 @@
                                 </div>
                                 <div class="row m-t-20">
                                     <div class="col-md-6">
-                                        <button type="button" class="btn btn-danger btn-md btn-block waves-effect text-center m-b-20"><a href="login.html" style="text-decoration: none; color: #fff;">Cancelar</a></button>
+                                    <a class="btn btn-danger btn-md btn-block waves-effect text-center m-b-20" href="login.html" style="text-decoration: none; color: #fff;">Cancelar</a>
                                     </div>
                                     <div class="col-md-6">
                                         <button type="button" class="btn btn-primary btn-md btn-block waves-effect text-center m-b-20">Enviar</button>
