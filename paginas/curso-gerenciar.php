@@ -43,7 +43,9 @@
                     <h4>Todos os cursos</h4>
                     <div class="row align-items-center" >
                         <div class="col-sm-10"><span>Aqui estão todos os cursos cadastrados</span></div>
-                        <div class="col-sm-2"><button type="button" class="btn hor-grd btn-grd-primary btn-md btn-block waves-effect text-center"><a href="index.php?pagina=curso-cadastrar" style="text-decoration: none; color: #fff;">Cadastrar Curso</a></button></div>
+                        <div class="col-sm-2">
+                            <a class="btn hor-grd btn-grd-primary btn-md btn-block waves-effect text-center" href="index.php?pagina=curso-cadastrar" style="text-decoration: none; color: #fff;">Cadastrar Curso</a>
+                        </div>
                     </div>
                 </div>
                 <div class="card-block table-border-style">
