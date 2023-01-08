@@ -119,8 +119,8 @@ if(isset($_POST['enviar'])){
             <div class="form-group row">
                 <label class="col-sm-2 col-form-label">Administrador? </label>
                 <div class="col-sm-10">
-                    <div><input type="radio" name="admin" value="1"> SIM</div>
-                    <div><input type="radio" name="admin" value="0" checked> NÃO</div>
+                    <div><input type="radio" name="admin" value="1" <?php if((isset($_POST['admin']) && $_POST['admin'])) echo "checked";?> > SIM</div>
+                    <div><input type="radio" name="admin" value="0" <?php if((isset($_POST['admin']) && !$_POST['admin'])) echo "checked";?> > NÃO</div>
                 </div>
             </div>
             <div class="form-group row">
