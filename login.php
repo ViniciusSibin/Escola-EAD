@@ -6,7 +6,9 @@
         $email = $mysqli->escape_string($_POST['email']);
         $senha = $_POST['senha'];
 
+        //$senhaCriptografada = password_hash('A132546b', PASSWORD_DEFAULT);
         $sql = "SELECT * FROM usuarios WHERE email = '$email'";
+        //$sql = "UPDATE usuarios SET senha = '$senhaCriptografada' WHERE email='$email'";
         $sql_query = $mysqli->query($sql) or die($mysqli->error);
 
         if($sql_query->num_rows == 0){
