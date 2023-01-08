@@ -1,8 +1,8 @@
-CREATE USER 'sistema'@'localhost' IDENTIFIED BY 'sistema1234';
+CREATE USER IF NOT EXISTS 'sistema'@'localhost' IDENTIFIED BY 'sistema1234';
 GRANT ALL PRIVILEGES ON * . * TO 'sistema'@'localhost';
 FLUSH PRIVILEGES;
 
-CREATE DATABASE vtecead
+CREATE DATABASE IF NOT EXISTS vtecead
 DEFAULT CHARACTER SET utf8
 DEFAULT COLLATE utf8_general_ci;
 
@@ -47,5 +47,7 @@ PRIMARY KEY(id),
 FOREIGN KEY (usuario) REFERENCES usuario(id),
 FOREIGN KEY (curso) REFERENCES cursos(id)
 )DEFAULT CHARSET = utf8;
+
+insert into usuarios (nome, email, senha, telefone, nascimento, credito, fotoPerfil, admin, dataCadastro) values ('admin', 'vinisibim@gmail.com', 'A132546b', '44999091762', '1998-08-21', 1000, '', 1, '2023-01-01')
 
 COMMIT;
