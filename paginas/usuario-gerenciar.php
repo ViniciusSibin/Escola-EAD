@@ -1,6 +1,8 @@
 <?php
-    require_once('lib/conexao.php');
-    require_once('lib/funcoes.php');
+    include('lib/conexao.php');
+    include('lib/funcoes.php');
+    include('lib/protect.php');
+    protect(1);
     
     $sqlUsuario = "SELECT * FROM usuarios";
     $sqlUsuarioQuery = $mysqli->query($sqlUsuario) or die($mysqli->error);

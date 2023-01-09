@@ -1,5 +1,7 @@
 <?php
-    require_once('lib/conexao.php');
+    include('lib/conexao.php');
+    include('lib/protect.php');
+    protect(1);
     
     $sqlCurso = "SELECT * FROM cursos";
     $sqlCursoQuery = $mysqli->query($sqlCurso) or die($mysqli->error);

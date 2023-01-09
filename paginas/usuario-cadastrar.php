@@ -3,6 +3,8 @@
 if(isset($_POST['enviar'])){
     include('lib/conexao.php');
     include('lib/funcoes.php');
+    include('lib/protect.php');
+    protect(1);
 
     $erro = false;
     

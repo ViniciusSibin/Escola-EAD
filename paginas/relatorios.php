@@ -1,6 +1,8 @@
 <?php
-    require_once('lib/conexao.php');
-    require_once('lib/funcoes.php');
+    include('lib/conexao.php');
+    include('lib/funcoes.php');
+    include('lib/protect.php');
+    protect(1);
     
     $sqlRelatorio = "SELECT r.id, u.nome, c.titulo, r.valor, r.dataCompra FROM relatorio r, usuarios u, cursos c WHERE  u.id = r.id_usuario AND c.id = r.id_curso";
     $sqlRelatorioQuery = $mysqli->query($sqlRelatorio) or die($mysqli->error);

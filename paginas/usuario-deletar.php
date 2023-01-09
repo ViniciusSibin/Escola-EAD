@@ -1,5 +1,7 @@
 <?php 
     include('lib/conexao.php');
+    include('lib/protect.php');
+    protect(1);
 
     $idUsuario = $_GET['idUsuario'];
     $sqlUsuario = "SELECT * FROM usuarios WHERE id = '$idUsuario'";

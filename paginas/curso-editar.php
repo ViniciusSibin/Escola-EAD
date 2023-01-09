@@ -1,4 +1,7 @@
 <?php 
+    include('lib/protect.php');
+    protect(1);
+
     $idCurso = $_GET['idCurso'];
     $sqlCurso = "SELECT * FROM cursos WHERE id = '$idCurso'";
     $sqlCursoQuery = $mysqli->query($sqlCurso);
