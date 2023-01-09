@@ -105,6 +105,7 @@
                             </li>
                         </ul>
                         <ul class="nav-right">
+                            <?php if(isset($_SESSION['admin']) && !$_SESSION['admin']){?>
                             <li class="header-notification">
                                 <a href="#!">
                                     R$
@@ -116,6 +117,7 @@
                                     } ?>
                                 </a>
                             </li>
+                            <?php } ?>
                             <li class="user-profile header-notification">
                                 <a href="#!">
                                     <img src="<?php echo $usuario['fotoPerfil'] ?>" class="img-radius" alt="User-Profile-Image">
@@ -148,75 +150,78 @@
                     <nav class="pcoded-navbar">
                         <div class="sidebar_toggle"><a href="#"><i class="icon-close icons"></i></a></div>
                         <div class="pcoded-inner-navbar main-menu">
-                            <div class="pcoded-navigatio-lavel" data-i18n="nav.category.navigation">Menu</div>
-                            <ul class="pcoded-item pcoded-left-item">
-                                <li class="liHover">
-                                    <a href="index.php?pagina=paginaInicial">
-                                        <span class="pcoded-micon"><i class="ti-home"></i><b>D</b></span>
-                                        <span class="pcoded-mtext" data-i18n="nav.dash.main">Página Inicial</span>
-                                        <span class="pcoded-mcaret"></span>
-                                    </a>
-                                </li>
-                                <li class="">
-                                    <a href="index.php?pagina=lojaDeCursos">
-                                        <span class="pcoded-micon"><i class="ti-bag"></i><b>D</b></span>
-                                        <span class="pcoded-mtext" data-i18n="nav.dash.main">Loja de Cursos</span>
-                                        <span class="pcoded-mcaret"></span>
-                                    </a>
-                                </li>
-                                <li class="">
-                                    <a href="index.php?pagina=meusCursos">
-                                        <span class="pcoded-micon"><i class="ti-control-play"></i><b>D</b></span>
-                                        <span class="pcoded-mtext" data-i18n="nav.dash.main">Meus Cursos</span>
-                                        <span class="pcoded-mcaret"></span>
-                                    </a>
-                                </li>
-                                <li class="">
-                                    <a href="logout.php">
-                                        <span class="pcoded-micon"><i class="ti-layout-sidebar-left"></i><b>D</b></span>
-                                        <span class="pcoded-mtext" data-i18n="nav.dash.main">Sair</span>
-                                        <span class="pcoded-mcaret"></span>
-                                    </a>
-                                </li>
-
+                            <?php if(isset($_SESSION['admin']) && !$_SESSION['admin']){?>
                                 <div class="pcoded-navigatio-lavel" data-i18n="nav.category.navigation">Menu</div>
-                            <ul class="pcoded-item pcoded-left-item">
-                                <li class="liHover">
-                                    <a href="index.php?pagina=paginaInicial">
-                                        <span class="pcoded-micon"><i class="ti-home"></i><b>D</b></span>
-                                        <span class="pcoded-mtext" data-i18n="nav.dash.main">Página Inicial</span>
-                                        <span class="pcoded-mcaret"></span>
-                                    </a>
-                                </li>
-                                <li class="">
-                                    <a href="index.php?pagina=curso-gerenciar">
-                                        <span class="pcoded-micon"><i class="ti-bag"></i><b>D</b></span>
-                                        <span class="pcoded-mtext" data-i18n="nav.dash.main">Gerenciar Cursos</span>
-                                        <span class="pcoded-mcaret"></span>
-                                    </a>
-                                </li>
-                                <li class="">
-                                    <a href="index.php?pagina=usuario-gerenciar">
-                                        <span class="pcoded-micon"><i class="ti-user"></i><b>D</b></span>
-                                        <span class="pcoded-mtext" data-i18n="nav.dash.main">Gerenciar Usuários</span>
-                                        <span class="pcoded-mcaret"></span>
-                                    </a>
-                                </li>
-                                <li class="">
-                                    <a href="index.php?pagina=relatorios">
-                                        <span class="pcoded-micon"><i class="ti-file"></i><b>D</b></span>
-                                        <span class="pcoded-mtext" data-i18n="nav.dash.main">Relatórios</span>
-                                        <span class="pcoded-mcaret"></span>
-                                    </a>
-                                </li>
-                                <li class="">
-                                    <a href="logout.php">
-                                        <span class="pcoded-micon"><i class="ti-layout-sidebar-left"></i><b>D</b></span>
-                                        <span class="pcoded-mtext" data-i18n="nav.dash.main">Sair</span>
-                                        <span class="pcoded-mcaret"></span>
-                                    </a>
-                                </li>
-                            </ul>
+                                <ul class="pcoded-item pcoded-left-item">
+                                    <li class="liHover">
+                                        <a href="index.php?pagina=paginaInicial">
+                                            <span class="pcoded-micon"><i class="ti-home"></i><b>D</b></span>
+                                            <span class="pcoded-mtext" data-i18n="nav.dash.main">Página Inicial</span>
+                                            <span class="pcoded-mcaret"></span>
+                                        </a>
+                                    </li>
+                                    <li class="">
+                                        <a href="index.php?pagina=lojaDeCursos">
+                                            <span class="pcoded-micon"><i class="ti-bag"></i><b>D</b></span>
+                                            <span class="pcoded-mtext" data-i18n="nav.dash.main">Loja de Cursos</span>
+                                            <span class="pcoded-mcaret"></span>
+                                        </a>
+                                    </li>
+                                    <li class="">
+                                        <a href="index.php?pagina=meusCursos">
+                                            <span class="pcoded-micon"><i class="ti-control-play"></i><b>D</b></span>
+                                            <span class="pcoded-mtext" data-i18n="nav.dash.main">Meus Cursos</span>
+                                            <span class="pcoded-mcaret"></span>
+                                        </a>
+                                    </li>
+                                    <li class="">
+                                        <a href="logout.php">
+                                            <span class="pcoded-micon"><i class="ti-layout-sidebar-left"></i><b>D</b></span>
+                                            <span class="pcoded-mtext" data-i18n="nav.dash.main">Sair</span>
+                                            <span class="pcoded-mcaret"></span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            <?php } else {?>
+                                <div class="pcoded-navigatio-lavel" data-i18n="nav.category.navigation">Menu</div>
+                                <ul class="pcoded-item pcoded-left-item">
+                                    <li class="liHover">
+                                        <a href="index.php?pagina=paginaInicial">
+                                            <span class="pcoded-micon"><i class="ti-home"></i><b>D</b></span>
+                                            <span class="pcoded-mtext" data-i18n="nav.dash.main">Página Inicial</span>
+                                            <span class="pcoded-mcaret"></span>
+                                        </a>
+                                    </li>
+                                    <li class="">
+                                        <a href="index.php?pagina=curso-gerenciar">
+                                            <span class="pcoded-micon"><i class="ti-bag"></i><b>D</b></span>
+                                            <span class="pcoded-mtext" data-i18n="nav.dash.main">Gerenciar Cursos</span>
+                                            <span class="pcoded-mcaret"></span>
+                                        </a>
+                                    </li>
+                                    <li class="">
+                                        <a href="index.php?pagina=usuario-gerenciar">
+                                            <span class="pcoded-micon"><i class="ti-user"></i><b>D</b></span>
+                                            <span class="pcoded-mtext" data-i18n="nav.dash.main">Gerenciar Usuários</span>
+                                            <span class="pcoded-mcaret"></span>
+                                        </a>
+                                    </li>
+                                    <li class="">
+                                        <a href="index.php?pagina=relatorios">
+                                            <span class="pcoded-micon"><i class="ti-file"></i><b>D</b></span>
+                                            <span class="pcoded-mtext" data-i18n="nav.dash.main">Relatórios</span>
+                                            <span class="pcoded-mcaret"></span>
+                                        </a>
+                                    </li>
+                                    <li class="">
+                                        <a href="logout.php">
+                                            <span class="pcoded-micon"><i class="ti-layout-sidebar-left"></i><b>D</b></span>
+                                            <span class="pcoded-mtext" data-i18n="nav.dash.main">Sair</span>
+                                            <span class="pcoded-mcaret"></span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            <?php } ?>
                         </div>
                     </nav>
                     <!-- Fim do Menu lateral -->
@@ -238,12 +243,6 @@
             </div> 
         </div>
     </div>
-<div class="fixed-button">
-	<a href="https://codedthemes.com/item/guru-able-admin-template/" target="_blank" class="btn btn-md btn-primary">
-	  <i class="fa fa-shopping-cart" aria-hidden="true"></i> Upgrade To Pro
-	</a>
-</div>
-
     <!-- Warning Section Starts -->
     <!-- Older IE warning message -->
 <!--[if lt IE 9]>
