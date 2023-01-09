@@ -48,6 +48,15 @@ FOREIGN KEY (usuario) REFERENCES usuarios(id),
 FOREIGN KEY (curso) REFERENCES cursos(id)
 )DEFAULT CHARSET=utf8 ENGINE=InnoDB;
 
-insert into usuarios (nome, email, senha, telefone, nascimento, credito, fotoPerfil, admin, dataCadastro) values ('admin', 'vinisibim@gmail.com', 'A132546b', '44999091762', '1998-08-21', 1000, '', 1, '2023-01-01')
+CREATE TABLE IF NOT EXISTS relatorio (
+id INT NOT NULL AUTO_INCREMENT,
+id_usuario INT NOT NULL,
+id_curso INT NOT NULL,
+valor DECIMAL(5,2),
+dataCompra DATETIME NOT NULL,
+PRIMARY KEY(id),
+FOREIGN KEY (id_usuario) REFERENCES usuarios(id),
+FOREIGN KEY (id_curso) REFERENCES cursos(id)
+)DEFAULT CHARSET=utf8 ENGINE=InnoDB;
 
 COMMIT;
