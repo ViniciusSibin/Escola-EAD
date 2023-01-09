@@ -126,7 +126,7 @@
                                 </a>
                                 <ul class="show-notification profile-notification">
                                     <li>
-                                        <a href="#">
+                                        <a href="index.php?pagina=perfil">
                                             <i class="ti-user"></i> Perfil
                                         </a>
                                     </li>
