@@ -14,7 +14,6 @@ if(isset($_POST['enviar'])){
     $confirmarSenha = $_POST['confirmarSenha'];
     $admin = $_POST['admin'];
     
-
     if(verificaUsuario($nome, 5, 70, 'nome')){
         $erro = verificaUsuario($titulo, 5, 70, 'nome');
     }
@@ -39,7 +38,6 @@ if(isset($_POST['enviar'])){
         $erro = "A data de nascimento está fora do padrão, EX: dd/mm/aaaa!";
     }
     
-
     if(verificaSenha($senha)){
         $erro = verificaSenha($senha);
     }
@@ -67,13 +65,18 @@ if(isset($_POST['enviar'])){
         $sqlCadastroUsuario = "INSERT INTO usuarios (nome, email, senha, telefone, nascimento, fotoPerfil, admin, dataCadastro) VALUES ('$nome', '$email', '$senhaCriptografana', '$telefone' ,'$nascimento' ,'$pathFotoUsuario', '$admin' , NOW())";
         $sqlCadastroUsuarioQuery = $mysqli->query($sqlCadastroUsuario) or die($mysqli->error);
     }
-
-    var_dump($erro);
 }
 
 ?>
 <div class="auth-body mr-auto ml-auto col-md-7">
     <form class="md-float-material" method="POST" enctype="multipart/form-data">
+        <?php if(isset($erro) > 0 && $erro){ ?>
+            <div class="alert alert-danger">
+                <?php foreach($erro as $e){?>
+                <b>ERRO:</b> <?php echo $e;?><br>
+                <?php } ?>
+            </div>
+        <?php } ?>
         <div class="auth-box">
             <div class="col-md-12">
                 <h3 class="text-left txt-primary">Cadastrar novo usuário</h3>
@@ -129,20 +132,6 @@ if(isset($_POST['enviar'])){
                     <input type="file" name="fotoPerfil">
                 </div>
             </div>
-            <?php
-                if(count($_POST) > 0 && $erro){ ?>
-                <div class="form-group row">
-                    <label class="col-sm-2 col-form-label"></label>
-                    <p class="col-sm-10 col-form-label text-danger">ERRO: <?php echo $erro ?></p>
-                </div>
-            <?php } else {?>
-                <div class="form-group row">
-                    <label class="col-sm-2 col-form-label"></label>
-                    <p class="col-sm-10 col-form-label text-success">Usuário cadastrado com sucesso!</p>
-                </div>
-            <?php 
-             unset($_POST);
-            }?>
             <div class="row m-t-20">
                 <div class="col-md-6">
                     <a href="index.php?pagina=gerenciarUsuarios" class="btn btn-danger btn-md btn-block waves-effect text-center m-b-20">Cancelar</a>
