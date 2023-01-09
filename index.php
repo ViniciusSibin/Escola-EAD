@@ -1,6 +1,9 @@
 <?php
 
-    require_once('lib/conexao.php');
+    include('lib/conexao.php');
+    include('lib/protect.php');
+    protect(0);
+
     $pagina = "paginaInicial";
     $curso = false;
 
@@ -8,14 +11,7 @@
 
     if(isset($_GET['curso'])) $curso = $_GET['curso'];
 
-    if(!isset($_SESSION)){
-        session_start();
-    }
-
-    if(!isset($_SESSION['usuario'])){
-        header("Location: login.php");
-        die();
-    }
+    
     $id_Usuario = $_SESSION['usuario'];
     $sql_usuario = "SELECT * FROM usuarios WHERE id = '$id_Usuario'"; 
     $sql_usuario_query = $mysqli->query($sql_usuario) or die($mysqli->error);
