@@ -4,7 +4,7 @@
         $erro = false;
 
         $email = $mysqli->escape_string($_POST['email']);
-        $senha = $_POST['senha'];
+        $senha = $mysqli->escape_string($_POST['senha']);
 
         //$senhaCriptografada = password_hash('A132546b', PASSWORD_DEFAULT);
         $sql = "SELECT * FROM usuarios WHERE email = '$email'";
