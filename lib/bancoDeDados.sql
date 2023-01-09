@@ -22,7 +22,7 @@ fotoPerfil VARCHAR(100),
 admin BOOLEAN NOT NULL,
 dataCadastro DATETIME,
 PRIMARY KEY(id)
-)DEFAULT CHARSET = utf8;
+)DEFAULT CHARSET=utf8 ENGINE=InnoDB;
 
 
 CREATE TABLE IF NOT EXISTS cursos (
@@ -37,7 +37,7 @@ valor DECIMAL(8,2),
 fotoCurso VARCHAR(100),
 dataCadastro DATETIME,
 PRIMARY KEY(id)
-)DEFAULT CHARSET = utf8;
+)DEFAULT CHARSET=utf8 ENGINE=InnoDB;
 
 CREATE TABLE IF NOT EXISTS usuarioCurso (
 id INT NOT NULL AUTO_INCREMENT,
@@ -46,7 +46,7 @@ curso INT NOT NULL,
 PRIMARY KEY(id),
 FOREIGN KEY (usuario) REFERENCES usuarios(id),
 FOREIGN KEY (curso) REFERENCES cursos(id)
-)DEFAULT CHARSET = utf8;
+)DEFAULT CHARSET=utf8 ENGINE=InnoDB;
 
 insert into usuarios (nome, email, senha, telefone, nascimento, credito, fotoPerfil, admin, dataCadastro) values ('admin', 'vinisibim@gmail.com', 'A132546b', '44999091762', '1998-08-21', 1000, '', 1, '2023-01-01')
 
