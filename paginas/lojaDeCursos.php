@@ -1,6 +1,6 @@
 <?php 
-    require('lib/conexao.php');
-
+    include('lib/conexao.php');
+    
     if(!isset($_SESSION)){
         session_start();
     }
@@ -95,7 +95,7 @@
                         <form method="POST" action="">
                             <input type="hidden" name="idCurso" value="<?php echo $curso['id']; ?>">
                             <input type="hidden" name="valorCurso" value="<?php echo $curso['valor']; ?>">
-                            <button type="submit" name="cursoComprado" value="1" class="btn btn-primary btn-md btn-block waves-effect text-center m-b-20">Valor: R$<?php echo str_replace('.', ',', $curso['valor']); ?></button>
+                            <button type="submit" name="cursoComprado" value="1" class="btn btn-primary btn-md btn-block waves-effect text-center m-b-20">Valor: R$<?php echo number_format($curso['valor'], 2, ',', '.'); ?></button>
                         </form>
                         </div>
                     </div>
