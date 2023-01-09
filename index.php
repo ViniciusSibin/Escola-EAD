@@ -113,7 +113,11 @@
                                 <a href="#!">
                                     R$
                                     <span class="badge bg-c-pink"></span>
-                                    <?php echo $usuario['credito'] ?>
+                                    <?php if(empty($usuario['credito'])){
+                                        echo "0,00";
+                                    } else {
+                                        echo str_replace('.', ',', $usuario['credito']);
+                                    } ?>
                                 </a>
                             </li>
                             <li class="user-profile header-notification">
