@@ -113,7 +113,7 @@
                                     <?php if(empty($usuario['credito'])){
                                         echo "0,00";
                                     } else {
-                                        echo str_replace('.', ',', $usuario['credito']);
+                                        echo number_format($usuario['credito'], 2, ',', '.');
                                     } ?>
                                 </a>
                             </li>
