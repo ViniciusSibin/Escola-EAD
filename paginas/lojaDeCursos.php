@@ -1,9 +1,51 @@
 <?php 
     require('lib/conexao.php');
 
-    $sqlCurso = "SELECT * FROM cursos";
+    if(!isset($_SESSION)){
+        session_start();
+    }
+
+    $id_Usuario = $_SESSION['usuario'];
+
+    $sqlCurso = "SELECT c.* FROM cursos c LEFT JOIN usuariocurso uc on uc.curso = c.id WHERE uc.usuario <> '$id_Usuario' or uc.usuario IS NULL";
     $sqlCursoQuery = $mysqli->query($sqlCurso) or die($mysqli->error);
-    $sqlCursoLinhas = $sqlCursoQuery->num_rows;    
+    $sqlCursoLinhas = $sqlCursoQuery->num_rows;  
+    
+    
+
+    if(isset($_POST['cursoComprado']) && $_POST['cursoComprado']){
+        $idCurso = $_POST['idCurso'];
+        $valorCurso = $_POST['valorCurso'];
+        
+        
+        $sql_usuario = "SELECT * FROM usuarios WHERE id = '$id_Usuario'"; 
+        $sql_usuario_query = $mysqli->query($sql_usuario) or die($mysqli->error);
+        $usuario = $sql_usuario_query->fetch_assoc();
+
+        if($usuario['credito'] >= $valorCurso){
+            $novoCredito = $usuario['credito'] - $valorCurso;
+            
+            $sqlNovoCredito = "UPDATE usuarios SET credito = '$novoCredito' WHERE id = '$id_Usuario'";
+            $sqlNovoCreditoQuery = $mysqli->query($sqlNovoCredito);
+            if(!$sqlNovoCreditoQuery){
+                $erro = "Falha ao alterar o crédito no banco de dados.";
+            } else {
+                $sqlCursoUsuario = "INSERT INTO usuariocurso (usuario, curso) VALUE ('$id_Usuario', '$idCurso')";
+                $sqlCursoUsuarioQuery = $mysqli->query($sqlCursoUsuario);
+                if(!$sqlCursoUsuarioQuery){
+                    $erro = "Falha ao inserir dados no banco de dados.";
+                } else {
+                    die("<script>location.href=\"index.php?pagina=meusCursos\";</script>");
+                }
+            }
+
+            var_dump($novoCredito);
+        } else {
+            $erro = "Você não tem saldo suficiente!";
+        }
+        
+
+    }
 ?>
 <!-- Page-header start -->
 <div class="page-header card">
@@ -51,7 +93,9 @@
                         </div>
                         <p><?php echo $curso['descricao']; ?></p>
                         <form method="POST" action="">
-                            <a class="btn btn-primary btn-md btn-block waves-effect text-center m-b-20" href="index.php?pagina=lojaDeCursosDetalhes&id=<?php echo $curso['id']; ?>">Valor: R$<?php echo str_replace('.', ',', $curso['valor']); ?></a>
+                            <input type="hidden" name="idCurso" value="<?php echo $curso['id']; ?>">
+                            <input type="hidden" name="valorCurso" value="<?php echo $curso['valor']; ?>">
+                            <button type="submit" name="cursoComprado" value="1" class="btn btn-primary btn-md btn-block waves-effect text-center m-b-20">Valor: R$<?php echo str_replace('.', ',', $curso['valor']); ?></button>
                         </form>
                         </div>
                     </div>
