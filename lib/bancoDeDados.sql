@@ -44,7 +44,7 @@ id INT NOT NULL AUTO_INCREMENT,
 usuario INT NOT NULL,
 curso INT NOT NULL,
 PRIMARY KEY(id),
-FOREIGN KEY (usuario) REFERENCES usuario(id),
+FOREIGN KEY (usuario) REFERENCES usuarios(id),
 FOREIGN KEY (curso) REFERENCES cursos(id)
 )DEFAULT CHARSET = utf8;
 
