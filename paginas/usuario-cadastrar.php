@@ -46,24 +46,30 @@ if(isset($_POST['enviar'])){
         $erro = "As senhas não coincidem";
     }
 
-    $pathFotoUsuario = "";
-    $arq = $_FILES['fotoPerfil'];
-    if(!empty($arq['name']) && !empty($arq['size'])){
-        $pathFotoUsuario = uploadArquivo ($arq['error'], $arq['size'], $arq['name'], $arq['tmp_name'], "assets/images/perfil/");
-        if($pathFotoUsuario == 1){
-            $erro = "Imagem com erro!";
-        } else if($pathFotoUsuario == 2) {
-            $erro = "Arquivo muito grande!! Max: 2MB";
-        } else if($pathFotoUsuario == 3) {
-            $erro = "Tipo de arquivo não aceito, tipos aceitos:<br> <b>jpg</b>, <b>png</b>";
-        }
-    }
-
     if(!$erro){
-        $senhaCriptografana = password_hash($senha, PASSWORD_DEFAULT);
+        $pathFotoUsuario = "";
+        $arq = $_FILES['fotoPerfil'];
+        if(!empty($arq['name']) && !empty($arq['size'])){
+            $pathFotoUsuario = uploadArquivo ($arq['error'], $arq['size'], $arq['name'], $arq['tmp_name'], "assets/images/perfil/");
+            if($pathFotoUsuario == 1){
+                $erro = "Imagem com erro!";
+            } else if($pathFotoUsuario == 2) {
+                $erro = "Arquivo muito grande!! Max: 2MB";
+            } else if($pathFotoUsuario == 3) {
+                $erro = "Tipo de arquivo não aceito, tipos aceitos:<br> <b>jpg</b>, <b>png</b>";
+                
+            }
+        }
 
-        $sqlCadastroUsuario = "INSERT INTO usuarios (nome, email, senha, telefone, nascimento, fotoPerfil, admin, dataCadastro) VALUES ('$nome', '$email', '$senhaCriptografana', '$telefone' ,'$nascimento' ,'$pathFotoUsuario', '$admin' , NOW())";
-        $sqlCadastroUsuarioQuery = $mysqli->query($sqlCadastroUsuario) or die($mysqli->error);
+        if(!$erro){
+            $senhaCriptografada = password_hash($senha, PASSWORD_DEFAULT);
+
+            $sqlCadastroUsuario = "INSERT INTO usuarios (nome, email, senha, telefone, nascimento, fotoPerfil, admin, dataCadastro) VALUES ('$nome', '$email', '$senhaCriptografada', '$telefone' ,'$nascimento' ,'$pathFotoUsuario', '$admin' , NOW())";
+            $sqlCadastroUsuarioQuery = $mysqli->query($sqlCadastroUsuario) or die($mysqli->error);
+            if($sqlCadastroUsuarioQuery){
+                die("<script>location.href=\"index.php?pagina=usuario-gerenciar\";</script>");
+            }
+        }
     }
 }
 
