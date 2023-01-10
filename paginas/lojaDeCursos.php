@@ -7,7 +7,7 @@
 
     $id_Usuario = $_SESSION['usuario'];
 
-    $sqlCurso = "SELECT c.* FROM cursos c LEFT JOIN usuariocurso uc on uc.curso = c.id WHERE uc.usuario <> '$id_Usuario' or uc.usuario IS NULL";
+    $sqlCurso = "SELECT * FROM cursos c WHERE id NOT IN (SELECT curso FROM usuariocurso u WHERE usuario = '$id_Usuario')";
     $sqlCursoQuery = $mysqli->query($sqlCurso) or die($mysqli->error);
     $sqlCursoLinhas = $sqlCursoQuery->num_rows;  
     
