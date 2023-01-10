@@ -7,11 +7,11 @@ if(!function_exists("protect")){
         }
         
         if(!isset($_SESSION['usuario'])){
-            header("Location: login.php");
+            die("<script>location.href=\"login.php\";</script>");
         }
 
         if($admin == 1 && $_SESSION['admin'] != 1){
-            header("Location: login.php");
+            die("<script>location.href=\"index.php\";</script>");
         }
     }
 }
