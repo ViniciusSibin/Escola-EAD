@@ -61,7 +61,7 @@ function generateRandomString($length = 10) {
     
     use PHPMailer\PHPMailer\PHPMailer;
     function enviarEmail($destinatario, $assunto, $mensagem){
-        require_once 'vendor/autoload.php';
+        require_once('vendor/autoload.php');
 
         $mail = new PHPMailer;
         $mail->isSMTP();
